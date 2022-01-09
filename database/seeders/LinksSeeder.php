@@ -2,28 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\Property;
+use App\Models\Link;
+use Illuminate\Support\Facades\DB;
 
-class PropertiesSeeder
+class LinksSeeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function seed($properties)
+    public function seed($links)
     {
-        foreach ($properties as $property) {
-            Property::updateOrCreate($property);
+        foreach ($links as $link) {
+            DB::table('agent_property')->updateOrInsert($link);
         }
     }
 
     public function validateHeaders($headerFields)
     {
         $allowedFields = [
-            'name',
-            'type',
-            'price'
+            'agent_id',
+            'property_id',
+            'role'
         ];
 
         foreach($headerFields as $headerField) {

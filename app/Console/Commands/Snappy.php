@@ -23,6 +23,8 @@ class Snappy extends Command
      */
     protected $description = 'Command description';
 
+    protected $seeder;
+
     /**
      * Create a new command instance.
      *
@@ -31,6 +33,8 @@ class Snappy extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->seeder = new Seeder();
     }
 
     /**
@@ -40,47 +44,51 @@ class Snappy extends Command
      */
     public function handle()
     {
-        $seeder = new Seeder();
-        $seeder->seed('PropertiesSeeder');
-
         $seed = $this->argument('seed');
         $validSeeds = ['all', 'properties', 'agents', 'links'];
 
         if (!in_array($seed, $validSeeds)){
             echo "Unknown option - {$seed}\n";
             echo"Please try again Valid options are - 'all', 'properties', 'agents', 'links'\n";
-            return 0;
+            return;
         }
 
         if ($seed == 'all') {
             $this->seedProperties();
             $this->seedAgents();
-//            $this->seedLinks();
-            return 0;
+            $this->seedLinks();
+            return;
         }
 
         if ($seed == 'properties') {
             $this->seedProperties();
-            return 0;
+            return;
         }
 
         if ($seed == 'agents') {
             $this->seedAgents();
-            return 0;
+            return;
         }
 
-        return 0;
+        if ($seed == 'links') {
+            $this->seedLinks();
+            return;
+        }
+
     }
 
     public function seedProperties()
     {
-        $propertiesSeeder = new PropertiesSeeder;
-        $propertiesSeeder->run();
+        $this->seeder->seed('PropertiesSeeder', 'properties');
     }
 
     public function seedAgents()
     {
-        $agentsSeeder = new AgentsSeeder();
-        $agentsSeeder->run();
+        $this->seeder->seed('AgentsSeeder', 'agents');
+    }
+
+    public function seedLinks()
+    {
+        $this->seeder->seed('LinksSeeder', 'links');
     }
 }
