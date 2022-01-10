@@ -2,24 +2,25 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\Csv;
 use App\Models\Agent;
 
 class AgentsSeeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function seed($agents)
     {
         foreach ($agents as $agent) {
             Agent::updateOrCreate($agent);
         }
+
+        echo "\nAgents seeding completed...\n";
+
     }
 
     public function validateHeaders($headerFields)
     {
+        $csv = new Csv;
+
         $validFields = [
             'first_name',
             'last_name',
@@ -27,12 +28,6 @@ class AgentsSeeder
             'email'
         ];
 
-        foreach($headerFields as $headerField) {
-            if (!in_array($headerField, $validFields)) {
-                echo "\nInvalid header - {$headerField} \n\n";
-                return;
-            }
-        }
+        return ($csv->validateheaders($headerFields, $validFields));
     }
-
 }

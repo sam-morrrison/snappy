@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-
 use League\Csv\Reader;
 
 class Seeder
@@ -15,8 +14,8 @@ class Seeder
         $seedFileLocation = storage_path($inputFile);
 
         if (!file_exists($seedFileLocation)) {
-            echo "\nThe input file does not exist at the location given. {$seedFileLocation} \n";
-            return 1;
+            echo "\nThe input file does not exist at the location given....\n {$seedFileLocation} \n";
+            return;
         }
 
         $seedFile = Reader::createFromPath($seedFileLocation);
@@ -26,15 +25,14 @@ class Seeder
         $seederDriver = "Database\\Seeders\\" . $seederSource;
         $seeder = new $seederDriver;
 
-        $seeder->validateHeaders($headerFields);
+        if ($seeder->validateHeaders($headerFields)) {
+            $seedFile->setHeaderOffset(0);
 
-        $seedFile->setHeaderOffset(0);
+            foreach ($seedFile->getRecords() as $inputData) {
+                $seedData[] = $inputData;
+            }
 
-        foreach ($seedFile->getRecords() as $inputData) {
-            $seedData[] = $inputData;
+            $seeder->seed($seedData);
         }
-
-        $seeder->seed($seedData);
-
     }
 }

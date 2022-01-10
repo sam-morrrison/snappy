@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\Csv;
 use App\Models\Link;
 use Illuminate\Support\Facades\DB;
 
@@ -17,21 +18,21 @@ class LinksSeeder
         foreach ($links as $link) {
             DB::table('agent_property')->updateOrInsert($link);
         }
+
+        echo "\nLinks seeding completed...\n";
+
     }
 
     public function validateHeaders($headerFields)
     {
-        $allowedFields = [
+        $csv = new Csv;
+
+        $validFields = [
             'agent_id',
             'property_id',
             'role'
         ];
 
-        foreach($headerFields as $headerField) {
-            if (!in_array($headerField, $allowedFields)) {
-                echo "\nInvalid header - {$headerField}  \n\n";
-                return 1;
-            }
-        }
+        return ($csv->validateheaders($headerFields, $validFields));
     }
 }

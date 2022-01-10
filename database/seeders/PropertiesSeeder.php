@@ -2,35 +2,31 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\Csv;
 use App\Models\Property;
 
 class PropertiesSeeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function seed($properties)
     {
         foreach ($properties as $property) {
             Property::updateOrCreate($property);
         }
+
+        echo "\nProperties seeding completed...\n";
     }
 
     public function validateHeaders($headerFields)
     {
-        $allowedFields = [
+        $csv = new Csv;
+
+        $validFields = [
             'name',
             'type',
             'price'
         ];
 
-        foreach($headerFields as $headerField) {
-            if (!in_array($headerField, $allowedFields)) {
-                echo "\nInvalid header - {$headerField}  \n\n";
-                return 1;
-            }
-        }
+        return ($csv->validateheaders($headerFields, $validFields));
+
     }
 }
