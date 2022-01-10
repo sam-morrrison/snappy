@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Paginator;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -13,7 +15,19 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+
+        $pageNo = request('pageNo', 1);
+        $propsPerPage = request('perPage', 100);
+
+        $propsToSkip = ($pageNo * $propsPerPage) - $propsPerPage;
+
+        //Get only the required page of properties
+        $properties = Property::skip($propsToSkip)
+            ->take($propsPerPage)
+            ->get();
+
+        //pass that to the 'Paginator'
+        return new Paginator($properties);
     }
 
     /**
@@ -24,18 +38,15 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $property = request()->validate([
+            'name'  => 'required|string|max:20|unique:properties,name',
+            'price' => 'integer',
+            'type'  => 'string|in:Flat,Detached House,Attached House'
+         ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        //errors?
+
+        return Property::updateOrCreate($property);
     }
 
     /**

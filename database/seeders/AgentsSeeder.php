@@ -9,11 +9,13 @@ class AgentsSeeder
 {
     public function seed($agents)
     {
+        echo "Seeding Agents...\n";
+
         foreach ($agents as $agent) {
             Agent::updateOrCreate($agent);
         }
 
-        echo "\nAgents seeding completed...\n";
+        echo "Agents seeding completed...\n\n";
 
     }
 

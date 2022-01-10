@@ -15,11 +15,13 @@ class LinksSeeder
      */
     public function seed($links)
     {
+        echo "Seeding Links...\n";
+
         foreach ($links as $link) {
             DB::table('agent_property')->updateOrInsert($link);
         }
 
-        echo "\nLinks seeding completed...\n";
+        echo "Links seeding completed...\n\n";
 
     }
 

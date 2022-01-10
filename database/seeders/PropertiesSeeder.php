@@ -3,17 +3,21 @@
 namespace Database\Seeders;
 
 use App\Helpers\Csv;
-use App\Models\Property;
+use Illuminate\Support\Facades\Http;
 
 class PropertiesSeeder
 {
     public function seed($properties)
     {
+        echo "Seeding Properties...\n";
+
+        $rootUri = url()->full();
+
         foreach ($properties as $property) {
-            Property::updateOrCreate($property);
+            Http::post($rootUri . '/api/property', $property);
         }
 
-        echo "\nProperties seeding completed...\n";
+        echo "Properties seeding completed...\n\n";
     }
 
     public function validateHeaders($headerFields)

@@ -9,7 +9,7 @@ class Csv
     {
         foreach ($headerFields as $headerField) {
             if (!in_array($headerField, $validFields)) {
-                echo "\nInvalid header - {$headerField}  \n\n";
+                echo "\n\nSeed Error - - - Invalid header - {$headerField}  \n\n";
                 return false;
             }
         }
