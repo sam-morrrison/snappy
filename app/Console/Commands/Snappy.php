@@ -44,37 +44,27 @@ class Snappy extends Command
      */
     public function handle()
     {
-        $seed = $this->argument('seed');
+        $seed = strtolower($this->argument('seed'));
         $validSeeds = ['all', 'properties', 'agents', 'links'];
 
         if (!in_array($seed, $validSeeds)){
             echo "Unknown option - {$seed}\n";
-            echo"Please try again Valid options are - 'all', 'properties', 'agents', 'links'\n";
+            echo"Please try again. Valid options are - 'all', 'properties', 'agents', 'links'\n";
             return;
         }
 
-        if ($seed == 'all') {
-            $this->seedProperties();
-            $this->seedAgents();
-            $this->seedLinks();
-            return;
+        switch ($seed){
+            case 'all':
+                $this->seedProperties();
+                $this->seedAgents();
+                $this->seedLinks();
+            case 'properties':
+                $this->seedProperties();
+            case 'agents':
+                $this->seedAgents();
+            case 'links':
+                $this->seedLinks();
         }
-
-        if ($seed == 'properties') {
-            $this->seedProperties();
-            return;
-        }
-
-        if ($seed == 'agents') {
-            $this->seedAgents();
-            return;
-        }
-
-        if ($seed == 'links') {
-            $this->seedLinks();
-            return;
-        }
-
     }
 
     public function seedProperties()

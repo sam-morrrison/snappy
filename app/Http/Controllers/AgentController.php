@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agent;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AgentController extends Controller
 {
@@ -22,16 +20,16 @@ class AgentController extends Controller
             //get all the other agents
             $otherAgents = $agent->all()->except(['id', $agent->id]);
 
-            //Now get properties for our agent
+            //Now get the properties for our agent
             $properties = $agent->properties()->pluck('property_id')->toArray();
 
-            //Then loop through other agents and compare to our guy
+            //Then loop through other agents and compare to our agent
             foreach ($otherAgents as $otherAgent) {
                 //Get the properties for this agent
                 $otherAgentProperties = $otherAgent->properties()->pluck('property_id');
                 $matchingProperties = 0;
                 foreach ($otherAgentProperties as $otherAgentProperty) {
-                    //for each one that matches one of our agent's - increment the count of matches
+                    //for each property that matches one of our agent's, increment the count of matches
                     if (in_array($otherAgentProperty, $properties)) {
                         $matchingProperties ++;
                     }
@@ -45,7 +43,7 @@ class AgentController extends Controller
                 }
             }
 
-            //If we've matched with at least twoother agents, add our agent to top agents array
+            //If we've matched with at least two other agents, add our agent to 'top agents' array
 
             if ($totalAgentMatches >= 2) {
                 $topAgents[] = [
