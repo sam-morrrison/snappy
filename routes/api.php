@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AgentController;
-use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\Api\AgentController;
+use App\Http\Controllers\Api\PropertyController;
 
 
 Route::get('/property', [PropertyController::class, 'index']);
