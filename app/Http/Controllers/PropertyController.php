@@ -56,9 +56,22 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Property $property)
     {
-        //
+
+        request()->validate([
+            'price' => 'integer',
+            'type'  => 'string|in:Flat,Detached House,Attached House'
+        ]);
+
+        $success = $property->update([
+            'name' => request('name'),
+            'price' => request('price'),
+            'type' => request('type')
+        ]);
+
+        return $success;
+
     }
 
     /**
@@ -67,8 +80,8 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Property $property)
     {
-        //
+        return $property->delete();
     }
 }

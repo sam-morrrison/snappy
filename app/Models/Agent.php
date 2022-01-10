@@ -16,4 +16,10 @@ class Agent extends Model
         'phone',
         'email'
     ];
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class)->withPivot('role');
+    }
+
 }

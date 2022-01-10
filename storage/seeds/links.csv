@@ -1,4 +1,17 @@
 agent_id,property_id,role
 1,1,Viewing
 1,2,Selling
+1,3,Selling
+2,2,Viewing
 2,3,Selling
+3,1,Selling
+3,3,Viewing
+3,5,Selling
+4,3,Viewing
+4,4,Selling
+4,6,Selling
+5,1,Viewing
+5,2,Selling
+5,5,Viewing
+6,4,Selling
+6,6,Viewing
