@@ -14,23 +14,9 @@ class AgentProperty extends Migration
     public function up()
     {
         Schema::create('agent_property', function (Blueprint $table) {
-            $table->unsignedBigInteger('agent_id');
-            $table->unsignedBigInteger('property_id');
+            $table->foreignId('agent_id')->constrained();
+            $table->foreignId('property_id')->constrained();
             $table->enum('role', ['Viewing', 'Selling']);
-
-            $table->unique(['agent_id', 'property_id', 'role']);
-
-            $table->foreign('agent_id')
-                ->references('id')
-                ->on('agents')
-                ->onUpdate('restrict')
-                ->onDelete('cascade');
-
-            $table->foreign('property_id')
-                ->references('id')
-                ->on('properties')
-                ->onUpdate('restrict')
-                ->onDelete('cascade');
         });
 
     }

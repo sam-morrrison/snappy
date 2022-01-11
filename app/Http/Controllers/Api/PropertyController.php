@@ -1,7 +1,9 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Storeproperty;
+use App\Http\Requests\UpdateProperty;
 use App\Http\Resources\Paginator;
 use App\Models\Property;
 use Illuminate\Http\Request;
@@ -36,17 +38,9 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Storeproperty $request)
     {
-        $property = request()->validate([
-            'name'  => 'required|string|max:20|unique:properties,name',
-            'price' => 'integer',
-            'type'  => 'string|in:Flat,Detached House,Attached House'
-         ]);
-
-        //errors?
-
-        return Property::updateOrCreate($property);
+        return Property::updateOrCreate($request->validated());
     }
 
     /**
@@ -56,22 +50,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(UpdateProperty $request, Property $property)
     {
-
-        request()->validate([
-            'price' => 'integer',
-            'type'  => 'string|in:Flat,Detached House,Attached House'
-        ]);
-
-        $success = $property->update([
-            'name' => request('name'),
-            'price' => request('price'),
-            'type' => request('type')
-        ]);
-
-        return $success;
-
+        return $property->update($request->validated());
     }
 
     /**

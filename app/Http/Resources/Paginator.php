@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Http\Resources;
 
 use App\Models\Property;
@@ -22,7 +22,7 @@ class Paginator extends JsonResource
             'totalProperties' => $totalProperties,
             'totalPages' => $totalPages,
             'current_page' => (int) request('pageNo', 1),
-            'per_page' => (int) request('perPage'),
+            'per_page' => (int) request('perPage', 100),
             'properties' => $this->resource
         ];
     }

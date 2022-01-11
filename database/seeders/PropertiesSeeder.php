@@ -22,7 +22,7 @@ class PropertiesSeeder
 
     public function validateHeaders($headerFields)
     {
-        $csv = new Csv;
+        $csv = app()->make(Csv::class);
 
         $validFields = [
             'name',

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +17,7 @@ class Property extends Model
 
     public function agents()
     {
-        return $this->belongsToMany(Agent::class)->withPivot('role');
+        return $this->belongsToMany(Agent::class)->withPivot(['role']);
     }
 
 }

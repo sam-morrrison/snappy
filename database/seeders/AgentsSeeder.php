@@ -21,7 +21,7 @@ class AgentsSeeder
 
     public function validateHeaders($headerFields)
     {
-        $csv = new Csv;
+        $csv = app()->make(Csv::class);
 
         $validFields = [
             'first_name',

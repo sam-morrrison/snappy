@@ -1,10 +1,8 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Helpers\Seeder;
-use Database\Seeders\AgentsSeeder;
-use Database\Seeders\PropertiesSeeder;
 use Illuminate\Console\Command;
 
 class Snappy extends Command
@@ -34,7 +32,7 @@ class Snappy extends Command
     {
         parent::__construct();
 
-        $this->seeder = new Seeder();
+        $this->seeder = app()->make(Seeder::class);
     }
 
     /**
@@ -53,17 +51,23 @@ class Snappy extends Command
             return;
         }
 
+        echo "Seed = {$seed}\n";
+
         switch ($seed){
             case 'all':
                 $this->seedProperties();
                 $this->seedAgents();
                 $this->seedLinks();
+                break;
             case 'properties':
                 $this->seedProperties();
+                break;
             case 'agents':
                 $this->seedAgents();
+                break;
             case 'links':
                 $this->seedLinks();
+                break;
         }
     }
 
