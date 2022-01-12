@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Helpers\Csv;
-use Illuminate\Support\Facades\Http;
+use App\Models\Property;
 
 class PropertiesSeeder
 {
@@ -11,10 +11,8 @@ class PropertiesSeeder
     {
         echo "Seeding Properties...\n";
 
-        $rootUri = url()->full();
-
         foreach ($properties as $property) {
-            Http::post($rootUri . '/api/property', $property);
+            Property::updateOrCreate($property);
         }
 
         echo "Properties seeding completed...\n\n";
