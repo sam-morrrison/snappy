@@ -1,6 +1,7 @@
 @props(['property'])
 
 <div class="flex-1 flex flex-col justify-between  bg-gray-100 border-gray-200 border-2 mb-4 rounded-full">
+
     <div class="mt-4 pl-4 pb-2">
         <div class="grid grid-cols-3 gap-4 content-start ">
             <h2 class="text-xl mb-3 pl-10">

@@ -10,12 +10,6 @@
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center mb-10">
 
-        <div class="mt-8 md:mt-0 flex items-center">
-
-            <a href="/agents" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Manage Agents
-            </a>
-        </div>
     </nav>
 
     {{ $slot }}
