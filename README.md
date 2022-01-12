@@ -2,7 +2,7 @@
 
 ## General
 
-###Seeding
+### Seeding
  I've created an artisan command which will seed the dB from csv files. 
  Although the task only required the seeding of property details, in order to facilitate testing of
  the 'Top Agents' endpoint, I've also added seeders for the agents and agent_property tables which will seed the dB with the properties, agents and links from the task description. 
@@ -14,11 +14,11 @@
  . In order to change the seed data, 
  please just add/change the contents of these files
  
- ###Pagination
+ ### Pagination
  The api call to retrieve the list of properties accepts two parameters for pagination :- `pageNo` and `perPage` - if either
  parameter is omitted, its default value will be used - 1 for pageNo and 100 for perPage.
  
- ###Agents Links
+ ### Agents Links
  
  The form to link an agent to a property has a dropdown which is populated with only those agents who are not
  already linked to that property
@@ -31,7 +31,7 @@
 4. Run `php artisan migrate:fresh` to create dB tables
 5. Run `php artisan snappy:seed all` to seed the dB with the test data
 
-##Improvements
+## Improvements
 
 There are a number of improvements which time limitations precluded in the praparation of this project.
 
@@ -47,5 +47,5 @@ the helper in each seeder.
 While I've endeavoured to leave the controllers as skinny as possible, there is always room for further refactoring - especially
 in the case of the helper method to return 'Top' agents which is longer than I'd like it to be
 
-##
+## ----------
 Many thanks for taking the time to look over this code and I look forward to your comments and feedback
