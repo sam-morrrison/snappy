@@ -4,7 +4,14 @@ namespace App\Helpers;
 
 use App\Models\Agent;
 use App\Models\Property;
+use phpDocumentor\Reflection\Types\Collection;
 
+/**
+ * Get an array of agents with at least two properties in common with
+ * at least two other agents
+ *
+ * @return array
+ */
 class AgentHelper
 {
     public function getTopAgents()
@@ -56,6 +63,12 @@ class AgentHelper
         return $topAgents;
     }
 
+    /**
+     * Get all agents who don't currently list the given property
+     *
+     * @param Property $property
+     * @return Collection
+     */
     public function getAvailableAgents(Property $property)
     {
         foreach($property->agents as $agent) {

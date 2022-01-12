@@ -27,7 +27,11 @@ class AdminAgentController extends Controller
         return redirect('/properties');
     }
 
-
+    /**
+     * Create a link between an agent and a property
+     *
+     * @param AddLink $request
+     */
     public function link(AddLink $request)
     {
         $agent = Agent::find($request->get('agent_id'));

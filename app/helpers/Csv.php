@@ -5,6 +5,13 @@ namespace App\Helpers;
 class Csv
 
 {
+    /**
+     * Validate that each given header is in the array of valid header values
+     *
+     * @param $headerFields
+     * @param $validFields
+     * @return boolean
+     */
     public function validateheaders($headerFields, $validFields)
     {
         foreach ($headerFields as $headerField) {

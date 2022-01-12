@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 class PropertyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Return paginated list of properties
      *
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Resources\Paginator
      */
     public function index()
     {
@@ -35,7 +35,7 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Storeproperty $request
      * @return \Illuminate\Http\Response
      */
     public function store(Storeproperty $request)
@@ -46,8 +46,8 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdateProperty $request
+     * @param Property       $property
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProperty $request, Property $property)
@@ -58,7 +58,7 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Property $property
      * @return \Illuminate\Http\Response
      */
     public function destroy(Property $property)

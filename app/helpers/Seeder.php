@@ -7,6 +7,13 @@ use League\Csv\Reader;
 class Seeder
 {
 
+    /**
+     * Use the given seeder to process the input file
+     *
+     * @param $seederSource
+     * @param $inputFile
+     * @return array
+     */
     public function seed($seederSource, $inputFile)
     {
 
