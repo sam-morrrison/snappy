@@ -3,11 +3,31 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddLink;
+use App\Http\Requests\StoreAgent;
 use App\Models\Agent;
 use App\Models\Property;
 
 class AdminAgentController extends Controller
 {
+    public function create()
+    {
+        return view('agent');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param StoreAgent $request
+     * @return Agent
+     */
+    public function store(StoreAgent $request)
+    {
+        Agent::create($request->validated());
+
+        return redirect('/properties');
+    }
+
+
     public function link(AddLink $request)
     {
         $agent = Agent::find($request->get('agent_id'));

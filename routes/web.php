@@ -19,5 +19,7 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/properties', [DashboardController::class, 'index']);
 Route::get('/properties/{property}', [DashboardController::class, 'show']);
 
+Route::get('/agent', [AdminAgentController::class, 'create']);
+Route::post('/agent', [AdminAgentController::class, 'store']);
 Route::post('/agent/link', [AdminAgentController::class, 'link']);
 
