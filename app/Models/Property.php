@@ -17,7 +17,7 @@ class Property extends Model
 
     public function agents()
     {
-        return $this->belongsToMany(Agent::class)->withPivot(['role']);
+        return $this->belongsToMany(Agent::class)->withPivot('role');
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAgentController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('/properties', [DashboardController::class, 'index']);
+Route::get('/properties/{property}', [DashboardController::class, 'show']);
 
+Route::post('/agent/link', [AdminAgentController::class, 'link']);
 

@@ -3,15 +3,14 @@ declare(strict_types=1);
 namespace App\Helpers;
 
 use App\Models\Agent;
+use App\Models\Property;
 
-class TopAgents
+class AgentHelper
 {
     public function getTopAgents()
     {
-        $agent = app()->make(Agent::class);
-
         //Get all agents
-        $agents = $agent->all();
+        $agents = Agent::all();
 
         $topAgents = [];
 
@@ -55,6 +54,22 @@ class TopAgents
         }
 
         return $topAgents;
+    }
 
+    public function getAvailableAgents(Property $property)
+    {
+        foreach($property->agents as $agent) {
+            $propertyAgents[] = $agent->id;
+        }
+
+        $allAgents =  Agent::all();
+
+        foreach ($allAgents as $agent) {
+            if (!in_array($agent->id, $propertyAgents)) {
+                $availableAgents[] = $agent;
+            }
+        }
+
+        return $availableAgents;
     }
 }

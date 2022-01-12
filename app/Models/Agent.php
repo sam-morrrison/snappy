@@ -19,6 +19,7 @@ class Agent extends Model
 
     public function properties()
     {
-        return $this->belongsToMany(Property::class)->withPivot('role');
+        return $this->belongsToMany(Property::class)
+            ->withPivot('role');
     }
 }
