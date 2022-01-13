@@ -21,7 +21,7 @@
         <div class="ml-20 mt-3 text-sm">
             <ul class="mb-3">
                 @foreach ($property->agents as $agent)
-                    <li class="hover:text-blue-500 cursor-pointer mb-2"> {{ $agent->first_name }} {{ $agent->last_name }} ({{ $agent->pivot->role }})</li>
+                    <li class="mb-2"> {{ $agent->first_name }} {{ $agent->last_name }} ({{ $agent->pivot->role }})</li>
                 @endforeach
             </ul>
         </div>

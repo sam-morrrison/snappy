@@ -27,7 +27,6 @@ class DashboardController extends Controller
     public function show(Property $property)
     {
         $agents =  AgentHelper::getAvailableAgents($property);
-        $data = [$agents, $property];
         return view('agent-link', compact('agents','property'));
     }
 

@@ -15,6 +15,9 @@ class Property extends Model
         'price'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function agents()
     {
         return $this->belongsToMany(Agent::class)->withPivot('role');

@@ -17,6 +17,10 @@ class Agent extends Model
         'email'
     ];
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function properties()
     {
         return $this->belongsToMany(Property::class)

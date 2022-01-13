@@ -19,7 +19,7 @@ class Snappy extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = "Runs the process to seed the dB from csv files. Options are 'all', 'properties', 'agents' 'links";
 
     protected $seeder;
 
@@ -50,8 +50,6 @@ class Snappy extends Command
             echo"Please try again. Valid options are - 'all', 'properties', 'agents', 'links'\n";
             return;
         }
-
-        echo "Seed = {$seed}\n";
 
         switch ($seed){
             case 'all':

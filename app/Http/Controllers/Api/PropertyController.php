@@ -6,7 +6,6 @@ use App\Http\Requests\Storeproperty;
 use App\Http\Requests\UpdateProperty;
 use App\Http\Resources\Paginator;
 use App\Models\Property;
-use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
